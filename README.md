@@ -4,18 +4,18 @@ A secure **RESTful API** built with **Java** and **Spring Boot** for managing ta
 
 ---
 
-## **Tech Stack**
+## 🛠 **Tech Stack**
 
 - **Backend:** Java, Spring Boot  
 - **Security:** Spring Security, JWT  
 - **Database:** PostgreSQL, JPA/Hibernate  
 - **Testing:** JUnit, Mockito  
-- **Documentation:** OpenAPI  
+- **Documentation:** Swagger/OpenAPI  
 - **Deployment:** Docker  
 
 ---
 
-## **Features**
+## 🔹 **Features**
 
 - **User Management:**  
   - Register and log in with hashed passwords  
@@ -37,7 +37,7 @@ A secure **RESTful API** built with **Java** and **Spring Boot** for managing ta
 
 ---
 
-## **Architecture Overview**
+## 🔗 **Architecture Overview**
 
 ```mermaid
 flowchart TD
@@ -47,7 +47,7 @@ flowchart TD
     D --> E["PostgreSQL DB"]
 ```
 
-## **Getting Started**
+## ⚡ **Getting Started**
 
 ### 1. Clone the repository
 
@@ -85,3 +85,28 @@ docker-compose up --build
 - API available at http://localhost:8080
 
 - OpenAPI UI: http://localhost:8080/v1
+
+## 📌 API Endpoints
+
+| Endpoint             | Method | Request Body                                   | Response                   | Description                      |
+| -------------------- | ------ | ---------------------------------------------- | -------------------------- | -------------------------------- |
+| `/auth/register`     | POST   | `{ "username": "user", "password": "pass" }`   | `201 Created`              | Register new user                |
+| `/auth/login`        | POST   | `{ "username": "user", "password": "pass" }`   | `{ "token": "JWT_TOKEN" }` | Log in and get JWT               |
+| `/tasks`             | GET    | —                                              | List of tasks              | Get all tasks                    |
+| `/tasks`             | POST   | `{ "title": "Task 1", "description": "Desc" }` | Created Task               | Create a new task                |
+| `/tasks/{id}`        | GET    | —                                              | Task object                | Get task by ID                   |
+| `/tasks/{id}`        | PUT    | `{ "title": "Updated Task" }`                  | Updated Task               | Update task                      |
+| `/tasks/{id}`        | DELETE | —                                              | `204 No Content`           | Delete task                      |
+
+## 🧪 Running Tests
+
+```bash
+mvn test
+```
+- Unit tests for services
+- Integration tests for controllers using H2 in-memory DB
+
+## 🚀 Deployment
+- Dockerized with `Dockerfile` and `docker-compose.yml`
+- Ready for deployment on **Heroku, AWS, or any Docker-supported cloud**
+
