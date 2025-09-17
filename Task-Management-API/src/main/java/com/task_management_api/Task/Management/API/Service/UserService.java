@@ -5,6 +5,8 @@ import com.task_management_api.Task.Management.API.Repo.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Set;
+
 @Service
 public class UserService {
 
@@ -24,13 +26,16 @@ public class UserService {
 
         user.setUsername(username);
         user.setPassword(hashedPassword);
-        user.setRole("USER");
+        user.setRoles(Set.of("USER"));
 
         return userRepository.save(user);
 
     }
 
-    public void authenticateUser(String username, String password) {
+    public Boolean loginUser(String username, String password) {
 
+        Users userInfo = userRepository.findByUsername(username);
+
+        return passwordEncoder.matches(password, userInfo.getPassword());
     }
 }
