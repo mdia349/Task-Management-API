@@ -34,8 +34,8 @@ public class UserService {
 
     public Boolean loginUser(String username, String password) {
 
-        Users userInfo = userRepository.findByUsername(username);
+        Users user = userRepository.findByUsername(username);
 
-        return passwordEncoder.matches(password, userInfo.getPassword());
+        return passwordEncoder.matches(password, user.getPassword());
     }
 }
