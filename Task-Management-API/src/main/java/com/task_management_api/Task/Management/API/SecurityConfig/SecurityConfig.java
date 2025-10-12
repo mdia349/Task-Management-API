@@ -1,9 +1,7 @@
 package com.task_management_api.Task.Management.API.SecurityConfig;
 
 import com.task_management_api.Task.Management.API.JWT.JwtAuthenticationFilter;
-import com.task_management_api.Task.Management.API.JWT.JwtUtil;
 import com.task_management_api.Task.Management.API.Service.CustomUserDetailsService;
-import io.jsonwebtoken.JwtBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -34,7 +32,7 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/user/**").permitAll()
+                        .requestMatchers("/auth/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
